@@ -1,0 +1,64 @@
+#include "sort.h"
+
+/**
+ * quick_sort - sorts an array in ascending order using the Quick sort algorithm
+ * @array: Array to sort
+ * @size: size of array to sort
+ *
+ * Return: void
+ */
+void quick_sort_(int *array, size_t size, size_t low, size_t high)
+{
+	size_t pi;
+
+	if (low < high && high < size - 1)
+	{
+		pi = partition(array, size, low, high);
+		quick_sort_(array, size, pi + 1, high);
+		quick_sort_(array, size, low, pi - 1);
+	}
+}
+
+size_t partition(int *array, size_t size, size_t low, size_t high)
+{
+	int pi;
+	size_t i, j = low - 1;
+
+	pi = array[high];
+
+	for (i = low; i <= high - 1; i++)
+	{
+		if (array[i] <= pi)
+		{
+			j++;
+			swap(&array[j], &array[i]);
+			print_array(array, size);
+		}
+	}
+	swap(&array[j + 1], &array[high]);
+	print_array(array, size);
+	return (j + 1);
+}
+
+void quick_sort(int *array, size_t size)
+{
+	quick_sort_(array, size, 0, size - 1);
+}
+
+/**                                                                                 * swap - swap two variables                                                        * @a: The first integer                                                            * @b: The second integer                                                           *                                                                                  * Return: void                                                                     */                                                                                void swap(int *a, int *b)
+{
+	int c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
+}
+
+/*int main(void)
+{
+	int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
+	size_t n = sizeof(array) / sizeof(array[0]);
+	int pivot = partition(array, n, 0, n - 1);
+
+	return (1);
+}*/
