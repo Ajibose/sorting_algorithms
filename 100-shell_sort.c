@@ -41,7 +41,8 @@ void shell_sort(int *array, size_t size)
  * @b: The second integer
  * Return: void
  */
-void swap(int *a, int *b)                                                          {
+void swap(int *a, int *b)
+{
 	int c;
 
 	c = *a;
